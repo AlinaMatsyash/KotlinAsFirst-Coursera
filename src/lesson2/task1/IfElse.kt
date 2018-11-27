@@ -1,7 +1,9 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import java.lang.Math.pow
 import kotlin.math.max
 import kotlin.math.sqrt
 
@@ -63,8 +65,8 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
 fun ageDescription(age: Int): String {
-    if ((age == 11) ||(age%100==11)|| (age == 12) || (age == 14)) return "$age лет"
-    if (age%10==1) return "$age год"
+    if ((age == 11) || (age % 100 == 11) || (age == 12) || (age == 14)) return "$age лет"
+    if (age % 10 == 1) return "$age год"
     if ((age % 10 == 2) || (age % 10 == 3) || (age % 10 == 4)) return "$age года"
     if ((age % 10 == 0) || (age % 10 == 5) || (age % 10 == 6) || (age % 10 == 7) || (age % 10 == 8) || (age % 10 == 9)) return "$age лет"
     return "$age pi"
@@ -92,7 +94,14 @@ fun timeForHalfWay(t1: Double, v1: Double,
  */
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
-                       rookX2: Int, rookY2: Int): Int = TODO()
+                       rookX2: Int, rookY2: Int): Int {
+    if ((kingX != rookX1) && (kingX != rookX2) && (kingY != rookY1) && (kingY != rookY2)) return 0
+    if ((kingX == rookX1) || (kingX == rookX2) && (kingY == rookY1) || (kingY == rookY2)) return 3
+    if ((kingX == rookX1) || (kingY == rookY1)) return 1
+    if ((kingX == rookX2) || (kingY == rookY2)) return 2
+    return 9
+
+}
 
 /**
  * Простая
@@ -116,7 +125,31 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    if ((a > b) && (a > c)) {
+        println("qqq")
+        if (a>b+c) return -1
+        if (((pow(a, 2.0))) == (pow(c, 2.0) + pow(b, 2.0))) return 1
+        if (((pow(a, 2.0))) < (pow(c, 2.0) + pow(b, 2.0))) return 0
+        if (((pow(a, 2.0))) > (pow(c, 2.0) + pow(b, 2.0))) return 2
+    }
+    if ((b > a) && (b > c)) {
+        println("qqq2")
+        if (b>a+c) return -1
+        if (((pow(b, 2.0))) == (pow(c, 2.0) + pow(a, 2.0))) return 1
+        if (((pow(b, 2.0))) < (pow(c, 2.0) + pow(a, 2.0))) return 0
+        if (((pow(b, 2.0))) > (pow(c, 2.0) + pow(a, 2.0))) return 2
+    }
+    if ((c > b) && (c> a)) {
+        println("qqq3")
+        if (c>b+a) return -1
+        if (((pow(c, 2.0))) == (pow(a, 2.0) + pow(b, 2.0))) return 1
+        if (((pow(c, 2.0))) < (pow(a, 2.0) + pow(b, 2.0))) return 0
+        if (((pow(c, 2.0))) > (pow(a, 2.0) + pow(b, 2.0))) return 2
+    }
+    println("ниче не прокнуло")
+return 11
+}
 
 /**
  * Средняя
